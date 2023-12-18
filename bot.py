@@ -39,7 +39,7 @@ async def text4(message: Message):
             mss += "\n@" + i + " - " + "еще нет"
         elif i != "simple":
             mss += "\n@" + i + " - " + "да"
-    mss += "\nСписок участников которые написали первое сообщение:"
+    mss += "\nСписок участников которые написали второе сообщение:"
     for i in text_message["message2"].keys():
         if text_message["message2"][i][1] == 0 and i != "simple":
             mss += "\n@" + i + " - " + "еще нет"
@@ -132,7 +132,7 @@ async def text7(message: Message, state: FSMContext):
 
 @dp.message(WaitingForMessage.text7, Command("feedback"))
 async def text8(message: Message, state: FSMContext):
-    text_message["feedback"][message.from_user.username] = [message.from_user.username, ""]
+    text_message["feedback"][message.from_user.username] = ""
     with open('text.json', 'w', encoding='utf-8') as file:
         file.write(json.dumps(text_message, sort_keys=True, indent=2))
     await message.answer(text_message['texts']['text8'])
